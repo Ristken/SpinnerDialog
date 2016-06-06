@@ -73,23 +73,18 @@
     return _overlay;
 }
 
-
 - (void) show:(CDVInvokedUrlCommand*)command {
 
     callbackId = command.callbackId;
 
+    //If there is a loading mask yet we hide it
+    [self hide];
+
     title = [command argumentAtIndex:0];
     message = [command argumentAtIndex:1];
     isFixed = [command argumentAtIndex:2];
-    alpha = [command argumentAtIndex:3];
-    red = [command argumentAtIndex:4];
-    green = [command argumentAtIndex:5];
-    blue = [command argumentAtIndex:6];
-    
-    UIViewController *rootViewController = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
 
-    [rootViewController.view addSubview:self.overlay];
-
+    [self.webView.superview addSubview:self.overlay];
 }
 
 - (void) hide:(CDVInvokedUrlCommand*)command {
@@ -112,5 +107,3 @@
 
 
 @end
-
-
